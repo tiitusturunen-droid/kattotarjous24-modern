@@ -47,7 +47,8 @@ nav.top a{display:inline-flex; align-items:center; gap:5px; text-decoration:none
 nav.top a b{color:var(--accent)}
 nav.top a:hover{border-color:var(--accent)}
 nav.top .lbl{display:inline}
-#themeBtn{margin-left:auto; font:inherit; font-size:.85rem; border:1px solid var(--line); background:var(--surface2); color:var(--text); border-radius:999px; padding:3px 10px; cursor:pointer}
+#blankBtn{margin-left:auto}
+#themeBtn{ font:inherit; font-size:.85rem; border:1px solid var(--line); background:var(--surface2); color:var(--text); border-radius:999px; padding:3px 10px; cursor:pointer}
 @media (max-width:720px){ nav.top .lbl{display:none} nav.top a{padding:3px 11px} }
 
 /* osiot */
@@ -207,6 +208,31 @@ svg text{fill:var(--text); font-family:system-ui,-apple-system,"Segoe UI",Roboto
   .svg-wide{display:none}
 }
 @media (min-width:521px){ .mob-only{display:none} }
+
+/* tyhjä kaavio */
+#blankBtn{font:inherit; font-size:.85rem; border:1px solid var(--line); background:var(--surface2); color:var(--text); border-radius:999px; padding:3px 10px; cursor:pointer}
+#blankBtn[aria-pressed="true"]{background:var(--accent); color:var(--accent-text); border-color:var(--accent)}
+#blankHint{display:none; width:100%; font-size:.8rem; color:var(--accent); font-weight:600}
+body.blank #blankHint{display:block}
+body.blank .bk:not(.shown){color:transparent!important; background:repeating-linear-gradient(45deg,var(--line) 0 6px,var(--surface2) 6px 12px)!important; border-radius:4px; cursor:pointer; text-shadow:none; -webkit-user-select:none; user-select:none}
+body.blank .bk:not(.shown) *{color:transparent!important; background:transparent!important; border-color:transparent!important}
+body.blank .bk.shown{outline:2px solid var(--c1); outline-offset:1px; border-radius:4px}
+/* pikakoe */
+#koeApp .qtext{font-size:1.1rem; font-weight:700; margin:10px 0}
+#koeApp .opts{display:grid; gap:8px}
+#koeApp .opt{font:inherit; text-align:left; padding:12px; border-radius:10px; border:2px solid var(--line); background:var(--surface2); color:var(--text); cursor:pointer}
+#koeApp .opt:hover:not(:disabled){border-color:var(--accent)}
+#koeApp .opt.ok{border-color:var(--c1); background:color-mix(in srgb,var(--c1) 18%,var(--surface2))}
+#koeApp .opt.bad{border-color:var(--c3); background:color-mix(in srgb,var(--c3) 18%,var(--surface2))}
+#koeApp .opt:disabled{cursor:default}
+#koeApp .prog{height:8px; background:var(--surface2); border:1px solid var(--line); border-radius:999px; overflow:hidden}
+#koeApp .prog div{height:100%; background:var(--accent); transition:width .2s}
+#koeApp .meta{display:flex; justify-content:space-between; font-size:.85rem; color:var(--muted); margin:8px 0}
+#koeApp .fb{margin:12px 0; font-weight:600}
+#koeApp .btn{font:inherit; font-weight:700; padding:10px 18px; border-radius:10px; border:0; background:var(--accent); color:var(--accent-text); cursor:pointer}
+#koeApp .score{font-size:2.4rem; font-weight:800; color:var(--accent)}
+#koeApp .miss{border-left:4px solid var(--c3); background:var(--surface2); border-radius:0 8px 8px 0; padding:8px 12px; margin:8px 0; font-size:.9rem}
+#koeApp .miss .y{color:var(--c3)} #koeApp .miss .c{color:var(--c1); font-weight:600}
 </style>
 </head>
 <body>
@@ -218,7 +244,10 @@ svg text{fill:var(--text); font-family:system-ui,-apple-system,"Segoe UI",Roboto
     <a href="#luku4"><b>4</b><span class="lbl">Oppiminen</span></a>
     <a href="#luku5"><b>5</b><span class="lbl">Menetelmät</span></a>
     <a href="#luku6"><b>6</b><span class="lbl">Ympäristöt</span></a>
+    <a href="#koe"><b>✎</b><span class="lbl">Pikakoe</span></a>
+    <button id="blankBtn" type="button" aria-pressed="false" hidden>◌ Piilota nimet</button>
     <button id="themeBtn" type="button" aria-label="Vaihda teema">◐ Teema</button>
+    <span id="blankHint">Nimet piilotettu: yritä muistaa ja napauta raidallista kohtaa paljastaaksesi.</span>
   </div>
 </nav>
 
@@ -262,7 +291,7 @@ svg text{fill:var(--text); font-family:system-ui,-apple-system,"Segoe UI",Roboto
   <p class="lead">Lähtökohtana ovat poikkeusolojen toimintaympäristön asettamat vaatimukset. Koulutuksen keskeisin päämäärä on tuottaa reserviin poikkeusolojen vaatimukset täyttäviä suorituskykyisiä joukkoja. (s. 9–10)</p>
 
   <h3>Puolustusvoimien koulutuksen kokonaisuus <small>(Kuva 1, s. 10)</small></h3>
-  <div class="k1" role="img" aria-label="Kuva 1: yksilön osaaminen ja toimintakyky sekä joukon suorituskyky; opetus, yksilöiden ja joukkojen koulutus, joukkojen harjoittelu, yksilöiden ja joukkojen arviointi">
+  <div data-blank=":scope>div" class="k1" role="img" aria-label="Kuva 1: yksilön osaaminen ja toimintakyky sekä joukon suorituskyky; opetus, yksilöiden ja joukkojen koulutus, joukkojen harjoittelu, yksilöiden ja joukkojen arviointi">
     <div class="top" style="grid-column:1/4">YKSILÖN OSAAMINEN JA TOIMINTAKYKY</div>
     <div class="top" style="grid-column:4/7">JOUKON SUORITUSKYKY</div>
     <div class="eval" style="grid-column:7;grid-row:1/3">YKSILÖIDEN JA JOUKKOJEN ARVIOINTI</div>
@@ -275,7 +304,7 @@ svg text{fill:var(--text); font-family:system-ui,-apple-system,"Segoe UI",Roboto
   <div class="quote">Osaaminen on kokonaisuus, joka muodostuu yksilön tiedoista, taidoista ja asenteista sekä niiden soveltamisesta asetettujen päämäärien saavuttamiseksi.<div class="src">Kirjan korostus, s. 11</div></div>
 
   <h3>Toimintakyvyn neljä osa-aluetta <small>(Kuva 2, s. 13)</small></h3>
-  <div class="quad">
+  <div data-blank="h4" class="quad">
     <div class="card acc"><h4>Psyykkinen</h4><p>Vahva itseluottamus sekä kyky sietää, hallita ja palautua haastavien tilanteiden tai ympäristön kuormituksesta.</p></div>
     <div class="card acc"><h4>Fyysinen</h4><p>Henkilökohtainen fyysinen kunto: kestävyyskunto, voima, nopeus ja erilaiset aistitoiminnot.</p></div>
     <div class="center">↕ vuorovaikutuksessa keskenään ↕</div>
@@ -285,7 +314,7 @@ svg text{fill:var(--text); font-family:system-ui,-apple-system,"Segoe UI",Roboto
   <div class="quote">Sotilaan toimintakyky on moniulotteinen yksilön ominaisuuksien, oppimisen ja kokemusten kautta kehittyvä henkilökohtaisten valmiuksien kokonaisuus, joka tukee yksilöllistä ja yhteisöllistä toimintaa.<div class="src">Kirjan korostus, s. 12</div></div>
 
   <h3>Ryhmän kehityksen viisi vaihetta <small>(s. 14)</small></h3>
-  <ol class="flow">
+  <ol data-blank="strong" class="flow">
     <li><span class="n">1</span><strong>Muotoutumisvaihe</strong></li>
     <li><span class="n">2</span><strong>Kuohuntavaihe</strong></li>
     <li><span class="n">3</span><strong>Normiutumisen vaihe</strong></li>
@@ -323,14 +352,14 @@ svg text{fill:var(--text); font-family:system-ui,-apple-system,"Segoe UI",Roboto
   <p class="lead">Kehittyvä koulutuskulttuuri asettaa vaatimuksia ja tarjoaa tiettyjä rooleja kouluttajalle. (s. 17)</p>
 
   <h3>Kouluttajan kolme osaamista <small>(3.1, s. 18–19)</small></h3>
-  <div class="cards">
+  <div data-blank="h4" class="cards">
     <div class="card acc"><span class="k">1</span><h4>Ammatillinen osaaminen</h4><p>Oman aselajin ja koulutushaaran taktiikka, taistelutekniikka, asejärjestelmät sekä opetus-, koulutus- ja havainnointivälineet. Ohjesäännöt ja palvelusturvallisuus.</p></div>
     <div class="card acc"><span class="k">2</span><h4>Pedagoginen osaaminen</h4><p>Opetus- ja oppimisprosessin ymmärrys; taito suunnitella, johtaa, toteuttaa, arvioida ja kehittää koulutustapahtumia. Opetusmenetelmän ja oppimisympäristön valinta.</p></div>
     <div class="card acc"><span class="k">3</span><h4>Vuorovaikutusosaaminen</h4><p>Taito motivoida, kuunnella, esittää kysymyksiä, havainnollistaa esimerkein, perustella ja antaa kehittävää palautetta.</p></div>
   </div>
 
   <h3>Kouluttajan neljä roolia <small>(3.2, s. 21–22)</small></h3>
-  <div class="nest">
+  <div data-blank=".t,h4" class="nest">
     <div class="t">4) Koulutuksen johtajan rooli</div>
     <div class="d">”toimii eri rooleja yhdistävänä kokonaisuutena”: koulutuksen suunnittelun, resursoinnin, toimeenpanon, arvioinnin ja kehittämisen johtaminen.</div>
     <div class="cards" style="margin:4px 0 0">
@@ -342,7 +371,7 @@ svg text{fill:var(--text); font-family:system-ui,-apple-system,"Segoe UI",Roboto
   <p class="src">Toiminnalliset roolit (s. 22): <span class="chip">kärkiosaaja</span><span class="chip">kohdekouluttaja</span><span class="chip">joukkueenkouluttaja</span></p>
 
   <h3>Oppimisympäristön kolme kokonaisuutta <small>(3.3, s. 23–24)</small></h3>
-  <ol class="flow">
+  <ol data-blank="strong" class="flow">
     <li><span class="n">1</span><strong>Tilat, rakennukset ja paikat</strong><p>joissa koulutustapahtumat toteutetaan</p></li>
     <li><span class="n">2</span><strong>Opetus- ja koulutusmateriaalit</strong><p>sekä opetusteknologiset ratkaisut</p></li>
     <li><span class="n">3</span><strong>Vuorovaikutus</strong><p>kouluttajan ja koulutettavan välillä</p></li>
@@ -385,7 +414,7 @@ svg text{fill:var(--text); font-family:system-ui,-apple-system,"Segoe UI",Roboto
 
   <h3>Linjakkuus koulutuksen suunnittelussa <small>(Kuva 3, s. 37)</small></h3>
   <div style="background:var(--accent); color:var(--accent-text); text-align:center; font-weight:700; font-size:.8rem; padding:5px; border-radius:6px 6px 0 0; clip-path:polygon(0 0,96% 0,100% 50%,96% 100%,0 100%)">LINJASSA JA YHTEENSOPIVAT →</div>
-  <div class="lin">
+  <div data-blank=".card" class="lin">
     <div class="card" style="padding:10px 4px">OSAAMISTAVOITTEET</div><div class="ar" style="color:var(--accent)"></div>
     <div class="card" style="padding:10px 4px">SISÄLLÖT</div><div class="ar" style="color:var(--accent)"></div>
     <div class="card" style="padding:10px 4px">MENETELMÄT</div><div class="ar" style="color:var(--accent)"></div>
@@ -395,7 +424,7 @@ svg text{fill:var(--text); font-family:system-ui,-apple-system,"Segoe UI",Roboto
 
   <h3>Osaamisen tasot <small>(s. 37 ja Taulukko 2, s. 38)</small></h3>
   <p>Kuusi tasoa; varusmieskoulutuksessa käytetään pääsääntöisesti <b>tasoja 1–3</b>.</p>
-  <div class="ladder" aria-label="Osaamisen tasot 1–6">
+  <div data-blank=":scope>div" class="ladder" aria-label="Osaamisen tasot 1–6">
     <div class="on" style="height:44px;--w:40%">1 <br>muistaa</div>
     <div class="on" style="height:62px;--w:52%">2 <br>ymmärtää</div>
     <div class="on" style="height:80px;--w:64%">3 <br>soveltaa</div>
@@ -403,7 +432,7 @@ svg text{fill:var(--text); font-family:system-ui,-apple-system,"Segoe UI",Roboto
     <div style="height:116px;--w:88%">5 <br>arvioi</div>
     <div style="height:134px;--w:100%">6 <br>luo</div>
   </div>
-  <table class="resp">
+  <table data-blank="td.rowh" class="resp">
     <thead><tr><th>Taso</th><th>Osaamisen yleinen kuvaus</th><th>Aktiiviset verbit (esimerkkejä)</th></tr></thead>
     <tbody>
       <tr><td class="rowh">SOVELTAA (TASO 3)</td><td data-l="Kuvaus">kyky soveltaa tietoja, taitoja ja menetelmiä erilaisissa tilanteissa</td><td data-l="Taito">soveltaa, toimia, muuttaa, käyttää, raportoida, tuottaa, hallitsee</td></tr>
@@ -414,7 +443,7 @@ svg text{fill:var(--text); font-family:system-ui,-apple-system,"Segoe UI",Roboto
   <p class="src">Taulukossa on erikseen verbit tiedolle, taidolle ja asenteelle/vuorovaikutukselle; tässä näytetään vain taidon verbit.</p>
 
   <h3>Arviointi koulutuksen eri kohdissa <small>(s. 39)</small></h3>
-  <ol class="flow">
+  <ol data-blank="strong" class="flow">
     <li><strong>Lähtötason arviointi</strong><p>ennen koulutusta tehtävä aiemman osaamisen arviointi</p></li>
     <li><strong>Formatiivinen arviointi</strong><p>jatkuvaa, koulutuksen aikaista kehittymisen seuraamista ja ohjaamista</p></li>
     <li><strong>Summatiivinen arviointi</strong><p>tietyn kokonaisuuden jälkeen tehtävää oppimistulosten arviointia</p></li>
@@ -449,7 +478,7 @@ svg text{fill:var(--text); font-family:system-ui,-apple-system,"Segoe UI",Roboto
   <p class="lead">Opetusmenetelmillä tarkoitetaan koulutuksen toteutustapoja. Parhaat lopputulokset saavutetaan usein yhdistämällä opetusmenetelmiä. (s. 43)</p>
 
   <h3>Koulutuksen rakenne sisäkkäin <small>(s. 43–44)</small></h3>
-  <div class="nest"><div class="t">Kausi ja jakso</div><div class="d">Palvelusaika jaksotetaan kausiin ja jaksoihin; niiden koulutus suunnitellaan kursseiksi.</div>
+  <div data-blank=".t" class="nest"><div class="t">Kausi ja jakso</div><div class="d">Palvelusaika jaksotetaan kausiin ja jaksoihin; niiden koulutus suunnitellaan kursseiksi.</div>
     <div class="nest"><div class="t">Kurssi</div><div class="d">Yhden tai useamman viikon kestävä koulutuskokonaisuus: oppitunteja, tietoiskuja, harjoitteita ja harjoituksia.</div>
       <div class="nest"><div class="t">Harjoitus</div><div class="d">Yhden tai useamman päivän koulutustapahtumien kokonaisuus; voi sisältää useita harjoitteita.</div>
         <div class="nest"><div class="t">Harjoite <span class="pill">yleensä 2–4 h</span></div><div class="d">Koulutetaan käytännön taitoja; pyritään yleensä saavuttamaan yksi kurssin osaamistavoitteista.</div>
@@ -460,7 +489,7 @@ svg text{fill:var(--text); font-family:system-ui,-apple-system,"Segoe UI",Roboto
   </div>
 
   <h3>Menetelmäperheet <small>(5.1–5.4, s. 45–55)</small></h3>
-  <div class="cards">
+  <div data-blank="h4" class="cards">
     <div class="card acc"><span class="k">5.1 · s. 45</span><h4>Käänteinen opetus</h4><p>Perusteet opiskellaan itsenäisesti ennen; yhteinen aika käytetään soveltamiseen.</p></div>
     <div class="card acc"><span class="k">5.2 · s. 48</span><h4>Itseopiskelu&shy;menetelmät</h4><p>muistiinpanojen tekeminen, aktivoiva kirjoitustehtävä, oppimispäiväkirja, yhteenvedot, harjoitukset</p></div>
     <div class="card acc"><span class="k">5.3 · s. 51</span><h4>Esittävät opetus&shy;menetelmät</h4><p>Kouluttaja puhuu, koulutettavat kuuntelevat; esim. tietoiskut.</p></div>
@@ -469,7 +498,7 @@ svg text{fill:var(--text); font-family:system-ui,-apple-system,"Segoe UI",Roboto
   <div class="quote">Käänteisessä opetuksessa kouluttaja toimii oppimisen ohjaajana ja koulutettavan valmentajana, ei valmiin tiedon jakajana.<div class="src">Kirjan korostus, s. 45</div></div>
 
   <h3>1 – 2 – 4 – 8 <small>(s. 53)</small></h3>
-  <ol class="flow">
+  <ol data-blank="strong" class="flow">
     <li><span class="n">1</span><strong>Yksin</strong><p>pohditaan kysymyksiä tai väitteitä</p></li>
     <li><span class="n">2</span><strong>Parit</strong><p>yhdistetään pohdinnat</p></li>
     <li><span class="n">4</span><strong>Neljän hengen ryhmä</strong><p>yhteinen kooste</p></li>
@@ -477,7 +506,7 @@ svg text{fill:var(--text); font-family:system-ui,-apple-system,"Segoe UI",Roboto
   </ol>
 
   <h3>Taitojen opettamisen kolme vaihetta <small>(5.5, s. 56)</small></h3>
-  <ol class="flow">
+  <ol data-blank="strong" class="flow">
     <li><span class="n">1</span><strong>Aloitusvaihe</strong><p>Tiedollinen pohja; esimerkkisuoritus; osat erikseen. Koulutettava hyötyy eniten ulkoisesta palautteesta.</p></li>
     <li><span class="n">2</span><strong>Harjoitteluvaihe</strong><p>Siirrytään vasta, kun osasuoritukset osataan tehdä oikein. Sotilaskoulutuksen painopiste.</p></li>
     <li><span class="n">3</span><strong>Autonominen vaihe</strong><p>Taito pystytään tuottamaan tiedostamattomasti; voidaan tehdä useita tehtäviä samanaikaisesti.</p></li>
@@ -486,7 +515,7 @@ svg text{fill:var(--text); font-family:system-ui,-apple-system,"Segoe UI",Roboto
 
   <h3>Joukon kouluttaminen <small>(5.6, s. 57)</small></h3>
   <div class="mem"><span class="tag">Muistisääntö · s. 57</span><div class="big">opeta – harjoita – vaadi</div>
-    <ol class="flow" style="margin-bottom:0">
+    <ol data-blank="strong" class="flow" style="margin-bottom:0">
       <li><span class="n">1</span><strong>Opeta</strong><p>Ensin opetetaan muodollisesti (esim. supistetuin etäisyyksin) perustaistelumenetelmät.</p></li>
       <li><span class="n">2</span><strong>Harjoita</strong><p>Muodollisesti opetettuja harjoitutetaan runsailla toistoilla.</p></li>
       <li><span class="n">3</span><strong>Vaadi</strong><p>Vaaditaan ja testataan opetettujen asioiden osaaminen sovelletuissa harjoituksissa (ml. live-simulaattorit ja taisteluammunnat).</p></li>
@@ -510,7 +539,7 @@ svg text{fill:var(--text); font-family:system-ui,-apple-system,"Segoe UI",Roboto
   <p class="lead">Kouluttaja suunnittelee oppimista edistävän oppimisympäristön, joka ohjaa, motivoi, tukee ja antaa palautetta koulutettaville. Oppimisympäristö ei saa opettaa vääriä toimintatapoja. (s. 59–60)</p>
 
   <h3>Oppimisympäristöjen jako <small>(Kuva 6, s. 60)</small></h3>
-  <div class="nest" style="border-style:dashed"><div class="t" style="text-align:right; font-size:.75rem; letter-spacing:.06em">OPPIMISILMAPIIRI · VUOROVAIKUTUS</div>
+  <div data-blank=".t,h4" class="nest" style="border-style:dashed"><div class="t" style="text-align:right; font-size:.75rem; letter-spacing:.06em">OPPIMISILMAPIIRI · VUOROVAIKUTUS</div>
     <div class="two" style="margin-top:6px">
       <div class="nest" style="margin:0"><div class="t">TEKNISET OPPIMISYMPÄRISTÖT</div>
         <div class="card" style="margin-top:6px"><h4>Puolustusvoimien verkko-oppimisympäristö</h4><p>Oppimisalustat (PVMoodle) · Aineistopalvelut (Kuva- ja mediapankki KUMEPA)</p></div>
@@ -526,7 +555,7 @@ svg text{fill:var(--text); font-family:system-ui,-apple-system,"Segoe UI",Roboto
   <p class="src">Oppimisympäristöjen tarkoituksena on (s. 61): tukea opettamista ja oppimista · havainnollistaa ja tarjota vaihtoehtoja · tehostaa ajankäyttöä, lisätä toistoja ja kustannustehokkuutta.</p>
 
   <h3>Simulaattorien kolme pääryhmää <small>(6.3.2, s. 65)</small></h3>
-  <table class="resp">
+  <table data-blank="td.rowh" class="resp">
     <thead><tr><th>Tyyppi</th><th>Ihmiset</th><th>Laitteet</th><th>Ympäristö</th><th>Esimerkki kirjassa</th></tr></thead>
     <tbody>
       <tr><td class="rowh">Live</td><td data-l="Ihmiset">todelliset</td><td data-l="Laitteet">todelliset tai simuloidut</td><td data-l="Ympäristö">todellinen</td><td data-l="Esimerkki">KASI</td></tr>
@@ -543,6 +572,17 @@ svg text{fill:var(--text); font-family:system-ui,-apple-system,"Segoe UI",Roboto
   </div>
 </section>
 
+
+<!-- ===================== PIKAKOE ===================== -->
+<section class="ch" id="koe">
+  <div class="chhead">
+    <div class="chnum">✎</div>
+    <div><h2>Pikakoe</h2><span class="pages">Kouluttajan käsikirja s. 7–67</span></div>
+  </div>
+  <noscript><p class="warnbox">Pikakoe ja nimien piilotus tarvitsevat JavaScriptin. Avaa sivu selaimessa (esim. Chrome tai Safari) – esikatselussa ne eivät toimi.</p></noscript>
+  <div id="koeApp" hidden></div>
+</section>
+
 <p class="muted" style="text-align:center; font-size:.8rem">Lähde: Kouluttajan käsikirja 2021, © Pääesikunta. Tiivistelmä opiskelukäyttöön; tarkista yksityiskohdat alkuperäisestä.</p>
 </main>
 
@@ -557,6 +597,66 @@ svg text{fill:var(--text); font-family:system-ui,-apple-system,"Segoe UI",Roboto
     root.setAttribute('data-theme',next);
     try{localStorage.setItem('kk-theme',next);}catch(e){}
   });
+})();
+</script>
+
+<script>
+(function(){
+  /* --- tyhjä kaavio --- */
+  var body=document.body, btn=document.getElementById('blankBtn');
+  document.querySelectorAll('[data-blank]').forEach(function(c){
+    c.querySelectorAll(c.getAttribute('data-blank')).forEach(function(e){e.classList.add('bk');});
+  });
+  btn.hidden=false;
+  btn.addEventListener('click',function(){
+    var on=!body.classList.contains('blank');
+    body.classList.toggle('blank',on);
+    btn.setAttribute('aria-pressed',on?'true':'false');
+    btn.textContent=on?'◉ Näytä nimet':'◌ Piilota nimet';
+    document.querySelectorAll('.bk.shown').forEach(function(e){e.classList.remove('shown');});
+  });
+  document.addEventListener('click',function(ev){
+    if(!body.classList.contains('blank'))return;
+    var t=ev.target.closest('.bk');
+    if(t){t.classList.toggle('shown'); ev.preventDefault();}
+  },true);
+
+  /* --- pikakoe --- */
+  var BANK=[{"q": "Mitkä ovat toimintakyvyn neljä osa-aluetta?", "a": ["Fyysinen, psyykkinen, eettinen ja sosiaalinen", "Fyysinen, psyykkinen, eettinen ja ammatillinen", "Ammatillinen, pedagoginen, vuorovaikutus ja fyysinen", "Fyysinen, psyykkinen, pedagoginen ja sosiaalinen"], "r": "#luku2", "p": "s. 12–13"}, {"q": "Kirjan määritelmän mukaan osaaminen muodostuu yksilön…", "a": ["tiedoista, taidoista ja asenteista sekä niiden soveltamisesta", "tiedoista, taidoista ja toimintakyvystä", "opetuksesta, koulutuksesta ja harjoittelusta", "muistamisesta, ymmärtämisestä ja soveltamisesta"], "r": "#luku2", "p": "s. 11"}, {"q": "Mikä on ryhmän kehityksen toinen vaihe?", "a": ["Kuohuntavaihe", "Muotoutumisvaihe", "Normiutumisen vaihe", "Tehtävän suorittamisen vaihe"], "r": "#luku2", "p": "s. 14"}, {"q": "Mikä on ryhmän kehityksen viimeinen vaihe?", "a": ["Lopetusvaihe", "Tehtävän suorittamisen vaihe", "Normiutumisen vaihe", "Kuohuntavaihe"], "r": "#luku2", "p": "s. 14"}, {"q": "Ryhmäkiinteys luo kirjan mukaan pohjan…", "a": ["taistelutahdolle ja tehokkaalle taistelutoiminnalle", "palvelusturvallisuudelle", "osaamisen arvioinnille", "oppimisympäristön valinnalle"], "r": "#luku2", "p": "s. 14"}, {"q": "Mitkä ovat kouluttajan kolme osaamista?", "a": ["Ammatillinen, pedagoginen ja vuorovaikutusosaaminen", "Opettaja, valmentaja ja kasvattaja", "Ammatillinen, fyysinen ja eettinen osaaminen", "Pedagoginen, eettinen ja sosiaalinen osaaminen"], "r": "#luku3", "p": "s. 18"}, {"q": "Mikä kouluttajan rooli ”toimii eri rooleja yhdistävänä kokonaisuutena”?", "a": ["Koulutuksen johtajan rooli", "Opettajan rooli", "Valmentajan rooli", "Kasvattajan rooli"], "r": "#luku3", "p": "s. 21–22"}, {"q": "Missä roolissa oman esimerkin vaikutusta ”ei voi koskaan liikaa korostaa”?", "a": ["Kasvattajan rooli", "Opettajan rooli", "Valmentajan rooli", "Koulutuksen johtajan rooli"], "r": "#luku3", "p": "s. 22"}, {"q": "Mikä on työ- ja palvelusturvallisuustoiminnan tavoite?", "a": ["Nolla tapaturmaa sekä avoin ja aloitteellinen ilmoituskulttuuri", "Suoritusten nopeus ennen turvallisuutta", "Turvallisuuspoikkeamat käsitellään vain kouluttajan kesken", "Jokainen koulutettava vastaa turvallisuudesta yksin"], "r": "#luku3", "p": "s. 26"}, {"q": "Uudet suoritukset opitaan kirjan mukaan tekemään…", "a": ["ensin turvallisesti ja vasta sen jälkeen tavoitellaan nopeutta", "ensin nopeasti ja sitten turvallisesti", "heti taisteluolosuhteissa", "ilman esimerkkisuoritusta"], "r": "#luku3", "p": "s. 26–27"}, {"q": "Mikä kohta kuuluu kouluttajan turvallisuusmuistilistaan?", "a": ["Pelasta, sammuta, hoida.", "Opeta, harjoita, vaadi.", "Opeta, mittaa, arvioi.", "Ole aito, kuuntele ja keskustele."], "r": "#luku3", "p": "s. 27"}, {"q": "Täydennä palautteen muistisääntö: ”Ole aito, kohdista palaute ___, kuuntele ja keskustele.”", "a": ["asiaan", "henkilöön", "ryhmään", "virheisiin"], "r": "#luku3", "p": "s. 26"}, {"q": "Mitä osaamisen tasoja varusmieskoulutuksessa käytetään pääsääntöisesti?", "a": ["Tasoja 1–3", "Tasoja 1–6", "Tasoja 4–6", "Tasoja 2–4"], "r": "#luku4", "p": "s. 37"}, {"q": "Mikä on osaamisen taso 2?", "a": ["Ymmärtää", "Muistaa", "Soveltaa", "Analysoi"], "r": "#luku4", "p": "s. 38"}, {"q": "Mikä on osaamisen taso 3?", "a": ["Soveltaa", "Ymmärtää", "Muistaa", "Arvioi"], "r": "#luku4", "p": "s. 38"}, {"q": "Mitkä neljä asiaa ovat linjakkuuden mallissa ”linjassa ja yhteensopivat”?", "a": ["Osaamistavoitteet, sisällöt, menetelmät ja arviointi", "Opetus, koulutus, harjoittelu ja arviointi", "Tiedot, taidot, asenteet ja arviointi", "Kurssi, harjoitus, harjoite ja rasti"], "r": "#luku4", "p": "s. 37"}, {"q": "Mitä on formatiivinen arviointi?", "a": ["Jatkuvaa, koulutuksen aikaista kehittymisen seuraamista ja ohjaamista", "Tietyn kokonaisuuden jälkeen tehtävää oppimistulosten arviointia", "Ennen koulutusta tehtävää aiemman osaamisen arviointia", "Vertaamista toisiin koulutettaviin"], "r": "#luku4", "p": "s. 39"}, {"q": "Suhteellisessa arvioinnissa suoritusta verrataan…", "a": ["toisiin koulutettaviin", "etukäteen määritettyyn kriteeriin", "oppimistavoitteisiin", "koulutettavan omaan lähtötasoon"], "r": "#luku4", "p": "s. 39"}, {"q": "Täydennä: ”Opeta sitä, mikä on tavoitteena. Mittaa ja arvioi sitä, mitä on ___.”", "a": ["opetettu", "harjoiteltu", "suunniteltu", "käsketty"], "r": "#luku4", "p": "s. 40"}, {"q": "Mikä on kirjan mukaan kaikkein tehokkainta palautetta?", "a": ["Yksilöllinen ja sopivan välitön palaute, jota tehostetaan havainnollistamalla", "Koko ryhmälle annettu palaute koulutuksen lopussa", "Kirjallinen palaute kurssin päätyttyä", "Palaute, joka keskittyy vain virheisiin"], "r": "#luku4", "p": "s. 41"}, {"q": "Mikä järjestys on oikea suurimmasta pienimpään?", "a": ["Kurssi → harjoitus → harjoite → rastikoulutus", "Harjoitus → kurssi → harjoite → rastikoulutus", "Kurssi → harjoite → harjoitus → rastikoulutus", "Harjoite → harjoitus → kurssi → rastikoulutus"], "r": "#luku5", "p": "s. 43–44"}, {"q": "Kuinka pitkä harjoite yleensä on?", "a": ["2–4 tuntia", "Yhden tai useamman päivän", "Yhden tai useamman viikon", "Koko koulutuskausi"], "r": "#luku5", "p": "s. 44"}, {"q": "Kuka pitää yleensä rastikoulutuksen?", "a": ["Harjoitteen apukouluttaja", "Koulutuksen johtaja", "Kurssin vanhin", "Koulutettavat itse"], "r": "#luku5", "p": "s. 44"}, {"q": "Mikä on taitojen opettamisen vaiheiden oikea järjestys?", "a": ["Aloitusvaihe → harjoitteluvaihe → autonominen vaihe", "Harjoitteluvaihe → aloitusvaihe → autonominen vaihe", "Autonominen vaihe → aloitusvaihe → harjoitteluvaihe", "Aloitusvaihe → autonominen vaihe → harjoitteluvaihe"], "r": "#luku5", "p": "s. 56"}, {"q": "Milloin siirrytään taidon harjoitteluvaiheeseen?", "a": ["Kun osasuoritukset osataan tehdä oikein", "Kun taito pystytään tuottamaan tiedostamattomasti", "Heti esimerkkisuorituksen jälkeen", "Kun kurssi on puolivälissä"], "r": "#luku5", "p": "s. 56"}, {"q": "Missä taidon oppimisen vaiheessa koulutettava hyötyy eniten ulkoisesta palautteesta?", "a": ["Aloitusvaiheessa", "Harjoitteluvaiheessa", "Autonomisessa vaiheessa", "Kaikissa yhtä paljon"], "r": "#luku5", "p": "s. 56"}, {"q": "Mitä ”vaadi” tarkoittaa periaatteessa opeta – harjoita – vaadi?", "a": ["Osaaminen vaaditaan ja testataan sovelletuissa harjoituksissa", "Perustaistelumenetelmät opetetaan muodollisesti", "Opetettuja harjoitutetaan runsailla toistoilla", "Koulutettavilta vaaditaan itseopiskelua ennen opetusta"], "r": "#luku5", "p": "s. 57"}, {"q": "Millaisena kouluttaja toimii käänteisessä opetuksessa?", "a": ["Oppimisen ohjaajana ja koulutettavan valmentajana", "Valmiin tiedon jakajana", "Pelkkänä arvioijana", "Turvallisuusvalvojana"], "r": "#luku5", "p": "s. 45"}, {"q": "Mihin kahteen pääryhmään oppimisympäristöt jaetaan?", "a": ["Fyysisiin ja teknisiin", "Live- ja virtuaalisiin", "Avoimiin ja rajoitettuihin", "Sisä- ja ulkoympäristöihin"], "r": "#luku6", "p": "s. 60"}, {"q": "Mitkä ovat simulaattorien kolme pääryhmää?", "a": ["Live-, virtuaali- ja konstruktiiviset simulaattorit", "Fyysiset, tekniset ja virtuaaliset simulaattorit", "Tulitoiminta-, ajoneuvo- ja toimenpidesimulaattorit", "Oppimispelit, PVMoodle ja KUMEPA"], "r": "#luku6", "p": "s. 65"}, {"q": "Minkä simulaattoriryhmän esimerkki KESI on kirjassa?", "a": ["Konstruktiivinen", "Live", "Virtuaali", "Ei mikään näistä"], "r": "#luku6", "p": "s. 65"}, {"q": "Minkä simulaattoriryhmän esimerkki KASI on kirjassa?", "a": ["Live", "Konstruktiivinen", "Virtuaali", "Ei mikään näistä"], "r": "#luku6", "p": "s. 65"}, {"q": "Mikä on simulaattorikoulutuksen tavoite?", "a": ["Siirtovaikutus: tehtävät osataan aidossa toimintaympäristössä", "Korvata kaikki maastokoulutus", "Vähentää kouluttajien määrää", "Pelillistää koko koulutus"], "r": "#luku6", "p": "s. 66"}], N=15, app=document.getElementById('koeApp');
+  app.hidden=false;
+  function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+  function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML;}
+  var qs,i,misses;
+  function start(){qs=shuffle(BANK).slice(0,Math.min(N,BANK.length));i=0;misses=[];show();}
+  function intro(){
+    app.innerHTML='<p>'+Math.min(N,BANK.length)+' satunnaista monivalintakysymystä '+BANK.length+' kysymyksen pankista. Jokaisen vastauksen jälkeen näet heti, menikö oikein, ja lopussa linkit kohtiin, jotka kannattaa kerrata. Väärät vaihtoehdot ovat kirjan omia termejä tai selvästi kirjan vastaisia väitteitä.</p><button class="btn" id="koeStart">Aloita koe</button>';
+    document.getElementById('koeStart').onclick=start;
+  }
+  function show(){
+    var q=qs[i], opts=shuffle(q.a.map(function(t,k){return {t:t,ok:k===0};}));
+    app.innerHTML='<div class="meta"><span>Kysymys '+(i+1)+' / '+qs.length+'</span><span>Oikein '+(i-misses.length)+'</span></div><div class="prog"><div style="width:'+(i/qs.length*100)+'%"></div></div><div class="qtext">'+esc(q.q)+'</div><div class="opts"></div><div class="fb"></div>';
+    var box=app.querySelector('.opts');
+    opts.forEach(function(o){
+      var b=document.createElement('button'); b.className='opt'; b.textContent=o.t;
+      b.onclick=function(){
+        box.querySelectorAll('.opt').forEach(function(x,k){x.disabled=true; if(opts[k].ok)x.classList.add('ok');});
+        if(!o.ok){b.classList.add('bad'); misses.push({q:q,y:o.t});}
+        var fb=app.querySelector('.fb');
+        fb.innerHTML=(o.ok?'<span style="color:var(--c1)">✓ Oikein</span>':'<span style="color:var(--c3)">✗ Väärin</span> · <a href="'+q.r+'">kertaa kohta</a> (kirjan '+esc(q.p)+')')+'<br><br>';
+        var n=document.createElement('button'); n.className='btn'; n.textContent=(i+1<qs.length)?'Seuraava →':'Näytä tulos';
+        n.onclick=function(){i++; if(i<qs.length)show(); else result();};
+        fb.appendChild(n); n.focus();
+      };
+      box.appendChild(b);
+    });
+  }
+  function result(){
+    var ok=qs.length-misses.length, h='<div class="score">'+ok+' / '+qs.length+'</div><p>'+(misses.length?'Kertaa nämä:':'Kaikki oikein!')+'</p>';
+    misses.forEach(function(m){h+='<div class="miss"><b>'+esc(m.q.q)+'</b><br><span class="y">Vastasit: '+esc(m.y)+'</span><br><span class="c">Oikein: '+esc(m.q.a[0])+'</span><br><a href="'+m.q.r+'">Kertaa kohta</a> · kirjan '+esc(m.q.p)+'</div>';});
+    h+='<p><button class="btn" id="koeAgain">Uusi koe</button></p>';
+    app.innerHTML=h; document.getElementById('koeAgain').onclick=start;
+  }
+  intro();
 })();
 </script>
 </body>

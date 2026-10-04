@@ -47,7 +47,8 @@ nav.top a{display:inline-flex; align-items:center; gap:5px; text-decoration:none
 nav.top a b{color:var(--accent)}
 nav.top a:hover{border-color:var(--accent)}
 nav.top .lbl{display:inline}
-#themeBtn{margin-left:auto; font:inherit; font-size:.85rem; border:1px solid var(--line); background:var(--surface2); color:var(--text); border-radius:999px; padding:3px 10px; cursor:pointer}
+#blankBtn{margin-left:auto}
+#themeBtn{ font:inherit; font-size:.85rem; border:1px solid var(--line); background:var(--surface2); color:var(--text); border-radius:999px; padding:3px 10px; cursor:pointer}
 @media (max-width:720px){ nav.top .lbl{display:none} nav.top a{padding:3px 11px} }
 
 /* osiot */
@@ -314,6 +315,31 @@ table.grid3 tbody th{writing-mode:horizontal-tb; width:16%}
   .quad4{gap:22px}
   table.grid3 tbody th{width:auto!important; display:block; padding:6px 10px}
 }
+
+/* tyhjä kaavio */
+#blankBtn{font:inherit; font-size:.85rem; border:1px solid var(--line); background:var(--surface2); color:var(--text); border-radius:999px; padding:3px 10px; cursor:pointer}
+#blankBtn[aria-pressed="true"]{background:var(--accent); color:var(--accent-text); border-color:var(--accent)}
+#blankHint{display:none; width:100%; font-size:.8rem; color:var(--accent); font-weight:600}
+body.blank #blankHint{display:block}
+body.blank .bk:not(.shown){color:transparent!important; background:repeating-linear-gradient(45deg,var(--line) 0 6px,var(--surface2) 6px 12px)!important; border-radius:4px; cursor:pointer; text-shadow:none; -webkit-user-select:none; user-select:none}
+body.blank .bk:not(.shown) *{color:transparent!important; background:transparent!important; border-color:transparent!important}
+body.blank .bk.shown{outline:2px solid var(--c1); outline-offset:1px; border-radius:4px}
+/* pikakoe */
+#koeApp .qtext{font-size:1.1rem; font-weight:700; margin:10px 0}
+#koeApp .opts{display:grid; gap:8px}
+#koeApp .opt{font:inherit; text-align:left; padding:12px; border-radius:10px; border:2px solid var(--line); background:var(--surface2); color:var(--text); cursor:pointer}
+#koeApp .opt:hover:not(:disabled){border-color:var(--accent)}
+#koeApp .opt.ok{border-color:var(--c1); background:color-mix(in srgb,var(--c1) 18%,var(--surface2))}
+#koeApp .opt.bad{border-color:var(--c3); background:color-mix(in srgb,var(--c3) 18%,var(--surface2))}
+#koeApp .opt:disabled{cursor:default}
+#koeApp .prog{height:8px; background:var(--surface2); border:1px solid var(--line); border-radius:999px; overflow:hidden}
+#koeApp .prog div{height:100%; background:var(--accent); transition:width .2s}
+#koeApp .meta{display:flex; justify-content:space-between; font-size:.85rem; color:var(--muted); margin:8px 0}
+#koeApp .fb{margin:12px 0; font-weight:600}
+#koeApp .btn{font:inherit; font-weight:700; padding:10px 18px; border-radius:10px; border:0; background:var(--accent); color:var(--accent-text); cursor:pointer}
+#koeApp .score{font-size:2.4rem; font-weight:800; color:var(--accent)}
+#koeApp .miss{border-left:4px solid var(--c3); background:var(--surface2); border-radius:0 8px 8px 0; padding:8px 12px; margin:8px 0; font-size:.9rem}
+#koeApp .miss .y{color:var(--c3)} #koeApp .miss .c{color:var(--c1); font-weight:600}
 </style>
 </head>
 <body>
@@ -322,7 +348,10 @@ table.grid3 tbody th{writing-mode:horizontal-tb; width:16%}
     <a href="#kokonaiskuva"><b>☰</b><span class="lbl">Kokonaiskuva</span></a>
     <a href="#osio1"><b>1</b><span class="lbl">Johtamisen perusta</span></a>
     <a href="#osio2"><b>2</b><span class="lbl">Syväjohtaminen</span></a>
+    <a href="#koe"><b>✎</b><span class="lbl">Pikakoe</span></a>
+    <button id="blankBtn" type="button" aria-pressed="false" hidden>◌ Piilota nimet</button>
     <button id="themeBtn" type="button" aria-label="Vaihda teema">◐ Teema</button>
+    <span id="blankHint">Nimet piilotettu: yritä muistaa ja napauta raidallista kohtaa paljastaaksesi.</span>
   </div>
 </nav>
 
@@ -365,7 +394,7 @@ table.grid3 tbody th{writing-mode:horizontal-tb; width:16%}
   <p class="toc"><a href="#o1-1">1 Johtaminen ja johtajuus</a> · <a href="#o1-2">2 Sotilasjohtaminen</a> · <a href="#o1-3">3 Ihmisten johtamisen perusteet</a> · <a href="#o1-4">4 Arvot</a> · <a href="#o1-5">5 Viestintä</a></p>
 
   <h3 id="o1-1">Johtamisen paradigmat Suomessa <small>(1.1, s. 13–14)</small></h3>
-  <div class="tl2">
+  <div data-blank=".r>span:first-child" class="tl2">
     <div class="r"><span>Tieteellinen liikkeenjohto (taylorismi)</span><div class="bar"><div class="fill" style="left:0%;width:25%"></div></div><span class="v">1940–1960</span></div>
     <div class="r"><span>Ihmissuhdekoulukunta</span><div class="bar"><div class="fill" style="left:0%;width:25%"></div></div><span class="v">1940–1960</span></div>
     <div class="r"><span>Rakenneteoriat</span><div class="bar"><div class="fill" style="left:25%;width:37.5%"></div></div><span class="v">1960–1990</span></div>
@@ -376,7 +405,7 @@ table.grid3 tbody th{writing-mode:horizontal-tb; width:16%}
   <p class="src">Vuosiluvut kuvaavat kirjan mukaan sitä, milloin kukin suuntaus vaikutti voimakkaimmin Suomessa. Johtamisparadigmat eivät ole kadonneet, vaan ne elävät rinnakkain. Organisaatiokulttuuriteorian alkuvuotta kirja ei kerro, joten palkin alku on haalea.</p>
 
   <p><b>Johtajuusteorioiden kehitys</b> <small>(1.2, s. 15–16)</small>:</p>
-  <ol class="flow">
+  <ol data-blank="strong" class="flow">
     <li><strong>Ominaisuus&shy;keskeiset</strong><p>johtajan ominaisuudet (traits)</p></li>
     <li><strong>Käyttäytymis&shy;keskeiset</strong><p>johtamiskäyttäytyminen (behaviour)</p></li>
     <li><strong>Tilanne&shy;keskeiset (kontingenssi&shy;teoriat)</strong><p>johtaminen on taito, jota voidaan opiskella ja oppia</p></li>
@@ -384,7 +413,7 @@ table.grid3 tbody th{writing-mode:horizontal-tb; width:16%}
   </ol>
 
   <h3 id="o1-2">Puolustusvoimien johtamisen nelikenttä <small>(Kuva 1, s. 18)</small></h3>
-  <div class="quad4">
+  <div data-blank="b" class="quad4">
     <div class="q4" style="background:#1d4f7a;color:#fff"><b>Johtaminen</b><small>(MANAGEMENT)</small></div>
     <div class="q4" style="background:#c8661a;color:#fff"><b>Organisaa&shy;tion rakenne</b><small>(STRUCTURE)</small></div>
     <div class="q4" style="background:#2b8fbf;color:#fff"><b>Johtajuus</b><small>(LEADERSHIP)</small></div>
@@ -398,13 +427,13 @@ table.grid3 tbody th{writing-mode:horizontal-tb; width:16%}
   <p class="src">Nelikenttä on ”lähinnä ajattelumalli, ei varsinainen johtamisen teoria”. Kaikki neljä osa-aluetta ovat keskinäisessä riippuvuussuhteessa. (s. 18–19)</p>
 
   <h3>Sotilasjohtajan toimintaympäristöt <small>(Kuva 2, s. 21)</small></h3>
-  <div class="envbar" role="img" aria-label="Toimintaympäristöt avoin, rajoitettu, minimaalinen">
+  <div data-blank=".grad span" class="envbar" role="img" aria-label="Toimintaympäristöt avoin, rajoitettu, minimaalinen">
     <div class="ends"><span style="color:var(--c1)">Stabiili<br>Ennustettava</span><span style="color:var(--c3);text-align:right">Dynaaminen<br>Kompleksinen<br>Nopeasti muuttuva</span></div>
     <div class="grad"><span>Avoin</span><span>Rajoitettu</span><span>Minimaalinen</span></div>
     <div class="ends"><span><b>Ihmisten johtaminen korostuu</b><br>Suorituskyvyn kasvattaminen</span><span style="text-align:right"><b>Asioiden johtaminen korostuu</b><br>Suorituskyvyn käyttäminen</span></div>
     <div class="timewedge"><span>Päätöksentekoon ja toimeenpanoon käytettävissä oleva aika</span></div>
   </div>
-  <div class="cards">
+  <div data-blank="h4" class="cards">
     <div class="card acc"><h4>Avoin</h4><p>luovuus ja innovatiivisuus · tilanneherkkyys ja matalat hierarkkiset rakenteet · verkostot · suuri yksilöllinen toiminnanvapaus · joustava organisaatiorakenne · rutiinit (s. 22)</p></div>
     <div class="card acc"><h4>Rajoitettu</h4><p>vakiintuneet organisaatiorakenteet ja toimintatavat, vahva organisaatiokulttuuri, korkea ja hierarkkinen linja-esikuntaorganisaatio, rajoitettu yksilöllinen toiminnanvapaus (s. 22–23)</p></div>
     <div class="card acc"><h4>Minimaalinen</h4><p>voimakas ja hetkittäin äärirajoille kasvava henkinen ja fyysinen stressi sekä taistelustressireaktiot; ei jätä yksilölle juurikaan toiminnanvapautta (s. 23)</p></div>
@@ -413,7 +442,7 @@ table.grid3 tbody th{writing-mode:horizontal-tb; width:16%}
   <p class="src">Organisaation näkökulmasta toimintaympäristöt ovat poikkeusolojen, normaaliolojen, kriisinhallinnan ja kokonaismaanpuolustuksen toimintaympäristö (s. 20). Varusmiespalveluksen aloittaminen on esimerkki siirtymisestä avoimesta rajoitettuun (s. 23).</p>
 
   <h3 id="o1-3">Tavoitteellisen vuorovaikutuksen pelikenttä <small>(Kuva 3, s. 26–27)</small></h3>
-  <div class="field">
+  <div data-blank="b" class="field">
     <div class="fq" style="border-color:var(--c2)"><b>Kontrolloiva vuorovaikutus&shy;kulttuuri</b><p>käskevää, pääsääntöisesti yksisuuntaista</p></div>
     <div class="fq hi"><b>Syväjohtamisen kulttuuri</b><p>aktiivista, kaksisuuntaista ja tavoitteiden ohjaamaa – ihannetila</p></div>
     <div class="fq" style="border-color:var(--c3)"><b>Passiivinen vuorovaikutus&shy;kulttuuri</b><p>tavoitteet epäselviä, kohtaamista vältellään</p></div>
@@ -437,7 +466,7 @@ table.grid3 tbody th{writing-mode:horizontal-tb; width:16%}
   <div class="quote">Esimiesten on huolehdittava siitä, että heille voi kertoa havaintoja ja tietoa epäkohdista ilman pelkoa seuraamuksista ja että henkilölle, joka on nostanut epäkohdan esille tai osallistunut asian selvittämiseen, ei aiheudu vastatoimia.<div class="src">Kirjan korostus, s. 34</div></div>
 
   <h3 id="o1-4">Puolustusvoimien yhteiset arvot <small>(4.1, s. 35–36)</small></h3>
-  <div class="cards c3">
+  <div data-blank="h4" class="cards c3">
     <div class="card acc"><h4>Isänmaallisuus</h4><p>konkretisoituu aina sotilasvala- ja -vakuutustilaisuuksissa</p></div>
     <div class="card acc"><h4>Ammattitaito</h4><p>tietynlaista työmoraalia ja ammattiylpeyttä</p></div>
     <div class="card acc"><h4>Oikeuden&shy;mukaisuus</h4><p>alaisten arvostamista; tasa-arvoinen ja yhdenvertainen kohtelu</p></div>
@@ -456,7 +485,7 @@ table.grid3 tbody th{writing-mode:horizontal-tb; width:16%}
   <p class="src">Puolustusvoimien johtajien arvot on kirjattu sotilasvalaan ja sotilasvakuutukseen (Kuva 4, s. 37).</p>
 
   <h3 id="o1-5">Viestintäprosessi <small>(Kuva 5, s. 41)</small></h3>
-  <div class="comm">
+  <div data-blank=".chain span,.pillbox" class="comm">
     <div class="ends2"><span class="pillbox" style="background:#2b8fbf">Lähettäjä</span><span class="fb">← Palaute ←</span><span class="pillbox" style="background:#2e7d32">Vastaanottaja</span></div>
     <ol class="chain" style="justify-content:center">
       <li><span>Tavoite</span></li><li><span>Sanoma</span></li><li><span>Muotoilu</span></li><li><span style="border-style:dashed">Viestintäkanava</span></li><li><span>Tulkinta</span></li>
@@ -468,7 +497,7 @@ table.grid3 tbody th{writing-mode:horizontal-tb; width:16%}
   <div class="quote">Viestintä liittyy oleellisesti johtamiseen ja viestinnän avulla johtaja välittää tahtonsa alaisille.<div class="src">Kirjan korostus, s. 40</div></div>
 
   <h3>Vuorovaikutustyylit <small>(s. 44–45)</small></h3>
-  <div class="cards">
+  <div data-blank="h4" class="cards">
     <div class="card" style="border-top:4px solid var(--c1)"><h4>Assertiivinen</h4><p>jämäkkä; puhuu suoraan ja selkeästi, mutta toisia kuunnellen</p></div>
     <div class="card"><h4>Epäassertiivinen</h4><p>vaikeus ilmaista omia tarpeita; välttää ristiriitoja, haluaa miellyttää</p></div>
     <div class="card" style="border-top:4px solid var(--c3)"><h4>Aggressiivinen</h4><p>toisten arvostelu, epäasiallinen puhetapa, vihan ilmaisu – ”ei kannata koskaan tietoisesti valita”</p></div>
@@ -514,13 +543,13 @@ table.grid3 tbody th{writing-mode:horizontal-tb; width:16%}
   <p class="src">Kahdeksikko kuvaa äärettömyyden symbolia, jossa ei ole alku- tai loppupistettä. Keskiössä on käyttäytyminen, johon yksilö voi eniten vaikuttaa. (s. 47)</p>
 
   <h3>Syväjohtamisen kulmakivet <small>(Kuva 8, s. 48)</small></h3>
-  <div class="iloa">
+  <div data-blank=":scope>div" class="iloa">
     <div><span>I</span>nnostus</div><div><span>L</span>uottamus</div><div><span>O</span>ppiminen</div><div><span>A</span>rvostus</div>
   </div>
   <p class="src">Kulmakivien lisäksi kuusi muuta ulottuvuutta: kontrolloiva johtaminen, passiivinen johtaminen, tehokkuus, tyytyväisyys, yrittämisen halu, ammattitaito (s. 49).</p>
 
   <h3 id="o2-2">Syväjohtamisen malli <small>(Kuva 9, s. 52)</small></h3>
-  <ol class="flow model">
+  <ol data-blank="strong,p" class="flow model">
     <li style="border-top:4px solid #1d6fa5"><strong style="color:#1d6fa5">Valmius</strong><p><b>1</b> Ammattitaito</p></li>
     <li style="border-top:4px solid #2e7d32"><strong style="color:#2e7d32">Käyttäytyminen</strong><p><b>2</b> Luottamus · <b>3</b> Arvostus · <b>4</b> Oppiminen · <b>5</b> Innostus · <span style="color:var(--warn)"><b>6</b> Kontrolloivuus · <b>7</b> Passiivisuus</span></p></li>
     <li style="border-top:4px solid #d9822b"><strong style="color:#d9822b">Vaikutus</strong><p><b>8</b> Tehokkuus · <b>9</b> Tyytyväisyys · <b>10</b> Yrittämisen halu</p></li>
@@ -528,7 +557,7 @@ table.grid3 tbody th{writing-mode:horizontal-tb; width:16%}
   <p class="src">Ammattitaidolla tarkoitetaan johtajan nykyisessä tehtävässään tarvitsemaa osaamista. Osaamisen kehittäminen rakentuu neljän osa-alueen kautta: <b>valmius, johtamiskäyttäytyminen, vaikutus ja palaute</b> (s. 51). ”Kukaan ei voi kuitenkaan saavuttaa täydellisyyttä ihmisten johtajana – johtajana kasvaminen on elinikäinen prosessi.” (s. 52)</p>
 
   <h3 id="o2-3">Ulottuvuuksien omat iskulauseet <small>(3.2–3.6, s. 54–56)</small></h3>
-  <table class="resp">
+  <table data-blank="td:nth-child(2)" class="resp">
     <thead><tr><th>Ulottuvuus</th><th>Kirjan korostuslaatikko</th><th>Esimerkki ominaispiirteestä</th></tr></thead>
     <tbody>
       <tr><td class="rowh">Luottamus</td><td data-l="Korostus"><b>Luottamus luo turvallisuutta – rakenna luottamusta!</b></td><td data-l="Esim.">Toteutan arvojani käytännössä – teen niin kuin puhun.</td></tr>
@@ -542,7 +571,7 @@ table.grid3 tbody th{writing-mode:horizontal-tb; width:16%}
   <p class="src">”Syväjohtamisen kulmakivistä tärkein on luottamus, koska se luo pohjan myös muille kulmakiville.” (s. 54) Kontrollia tarvitaan, mutta sitä ei saa olla liikaa; uuden asian opettaminen edellyttää kuitenkin kontrolloivaa johtamista (s. 56).</p>
 
   <h3 id="o2-4">Mikä selittää vaikutuksia eniten? <small>(s. 67)</small></h3>
-  <div class="expl">
+  <div data-blank=".from" class="expl">
     <div class="er"><div class="from"><span class="chip a">Innostus</span></div><div class="arr">→</div><div class="to"><b>Tehokkuus</b><small>tavoitteet saavutetaan entistä paremmin tai ne jopa ylitetään</small></div></div>
     <div class="er"><div class="from"><span class="chip a">Arvostus</span></div><div class="arr">→</div><div class="to"><b>Tyytyväisyys</b><small>pääosin tunnepohjainen käsitys johtajan onnistumisesta</small></div></div>
     <div class="er"><div class="from"><span class="chip a">Innostus</span><span class="chip a">Oppiminen</span><span class="chip" style="border-color:var(--warn);color:var(--warn)">käänteisesti: kontrolloiva</span></div><div class="arr">→</div><div class="to"><b>Yrittämisen halu</b><small>pysyvä sitoutumisen taso</small></div></div>
@@ -559,7 +588,7 @@ table.grid3 tbody th{writing-mode:horizontal-tb; width:16%}
     </div>
   </div>
   <p><b>Palautteeseen suhtautuminen</b> <small>(Kuva 10, s. 63)</small>:</p>
-  <div class="axisq">
+  <div data-blank=".fq b" class="axisq">
     <div class="ylab"><span>Itseluottamus korkea ↑</span></div>
     <div class="grid">
       <div class="fq" style="border-color:var(--c3)"><b>Taistelija</b><p>tunnekuohu voimakas, usein lyhytaikainen · suuttuu, kapinoi · kieltää, kostaa · ei ota opikseen</p></div>
@@ -571,7 +600,7 @@ table.grid3 tbody th{writing-mode:horizontal-tb; width:16%}
   </div>
 
   <h3 id="o2-6">Joharin ikkuna <small>(Kuva 11, s. 69–70)</small></h3>
-  <div class="johari">
+  <div data-blank=".jc b" class="johari">
     <div></div><div class="h">Tiedän</div><div class="h">En tiedä</div>
     <div class="h v">Näkyy</div><div class="jc" style="background:var(--accent);color:var(--accent-text)"><b>Avoin</b><small>käyttäytymisen vapaan ilmaisun alue</small></div><div class="jc"><b>Sokea</b><small>muut näkevät, itse en tiedosta</small></div>
     <div class="h v">Ei näy</div><div class="jc"><b>Salattu</b><small>asiat, joista en halua kertoa</small></div><div class="jc"><b>Tuntematon</b><small>en minä eivätkä muut tunne</small></div>
@@ -579,7 +608,7 @@ table.grid3 tbody th{writing-mode:horizontal-tb; width:16%}
   <p class="src">Akselit ovat avoimuus (kerrotaan itsestä muille) ja palautteen käsittely (haetaan ja otetaan vastaan palautetta). Keräämällä palautetta henkilö voi kasvattaa avointa minää sokean minän osuuden pienentyessä. (s. 69–70)</p>
 
   <h3>Profiilin tulkinta: suositeltu järjestys <small>(6, s. 66)</small></h3>
-  <ol class="chain">
+  <ol data-blank="li>span" class="chain">
     <li><span><b>1</b>Kaikkien arvioiden yhteenveto</span></li>
     <li><span><b>2</b>Kulmakivien (ILOA) vahvuudet ja kehittämistarpeet</span></li>
     <li><span><b>3</b>Kontrolloiva ja passiivinen johtaminen</span></li>
@@ -593,7 +622,7 @@ table.grid3 tbody th{writing-mode:horizontal-tb; width:16%}
   <p class="src">Kohdat on lyhennetty kirjan luettelosta. Kohta 5: ”Jos hajonta on yli 0.7, vastaajien palaute on ristiriistaista [sic].”</p>
 
   <h3>Kehittymissuunnitelman rakenne <small>(7.3, s. 72)</small></h3>
-  <ol class="flow">
+  <ol data-blank="strong" class="flow">
     <li><span class="n">1</span><strong>Vahvuudet</strong></li>
     <li><span class="n">2</span><strong>Kehittymis&shy;tarpeet</strong><p>kannattaa määritellä yksi tai kaksi</p></li>
     <li><span class="n">3</span><strong>Kehittymis&shy;päätös</strong><p>yksi keskeinen tavoite</p></li>
@@ -625,6 +654,17 @@ table.grid3 tbody th{writing-mode:horizontal-tb; width:16%}
   </div>
 </section>
 
+
+<!-- ===================== PIKAKOE ===================== -->
+<section class="ch" id="koe">
+  <div class="chhead">
+    <div class="chnum">✎</div>
+    <div><h2>Pikakoe</h2><span class="pages">Johtajan käsikirja osiot 1–2</span></div>
+  </div>
+  <noscript><p class="warnbox">Pikakoe ja nimien piilotus tarvitsevat JavaScriptin. Avaa sivu selaimessa (esim. Chrome tai Safari) – esikatselussa ne eivät toimi.</p></noscript>
+  <div id="koeApp" hidden></div>
+</section>
+
 <p class="muted" style="text-align:center; font-size:.8rem">Lähde: Johtajan käsikirja 2022, © Pääesikunta. Tiivistelmä opiskelukäyttöön; tarkista yksityiskohdat alkuperäisestä.</p>
 </main>
 
@@ -639,6 +679,66 @@ table.grid3 tbody th{writing-mode:horizontal-tb; width:16%}
     root.setAttribute('data-theme',next);
     try{localStorage.setItem('kk-theme',next);}catch(e){}
   });
+})();
+</script>
+
+<script>
+(function(){
+  /* --- tyhjä kaavio --- */
+  var body=document.body, btn=document.getElementById('blankBtn');
+  document.querySelectorAll('[data-blank]').forEach(function(c){
+    c.querySelectorAll(c.getAttribute('data-blank')).forEach(function(e){e.classList.add('bk');});
+  });
+  btn.hidden=false;
+  btn.addEventListener('click',function(){
+    var on=!body.classList.contains('blank');
+    body.classList.toggle('blank',on);
+    btn.setAttribute('aria-pressed',on?'true':'false');
+    btn.textContent=on?'◉ Näytä nimet':'◌ Piilota nimet';
+    document.querySelectorAll('.bk.shown').forEach(function(e){e.classList.remove('shown');});
+  });
+  document.addEventListener('click',function(ev){
+    if(!body.classList.contains('blank'))return;
+    var t=ev.target.closest('.bk');
+    if(t){t.classList.toggle('shown'); ev.preventDefault();}
+  },true);
+
+  /* --- pikakoe --- */
+  var BANK=[{"q": "Mistä osa-alueista Puolustusvoimien johtamisen nelikenttä muodostuu?", "a": ["Johtaminen, johtajuus, organisaatiorakenteet ja organisaatiokulttuuri", "Innostus, luottamus, oppiminen ja arvostus", "Valmius, käyttäytyminen, vaikutus ja palaute", "Avoin, rajoitettu, minimaalinen ja kriisinhallinta"], "r": "#osio1", "p": "s. 18"}, {"q": "Mikä nelikentän osa-alue on englanniksi leadership?", "a": ["Johtajuus", "Johtaminen", "Organisaatiorakenne", "Organisaatiokulttuuri"], "r": "#osio1", "p": "s. 18"}, {"q": "Mitkä nelikentän osa-alueet painottavat suunnittelua ja rakenteita?", "a": ["Johtaminen ja organisaatiorakenteet", "Johtajuus ja organisaatiokulttuuri", "Johtaminen ja johtajuus", "Organisaatiorakenteet ja organisaatiokulttuuri"], "r": "#osio1", "p": "s. 19"}, {"q": "Missä toimintaympäristössä ihmisten johtaminen korostuu?", "a": ["Avoimessa", "Rajoitetussa", "Minimaalisessa", "Kaikissa yhtä paljon"], "r": "#osio1", "p": "s. 21"}, {"q": "Uuden tiedon omaksumisen kannalta koulutettavan on tärkeää kokea olevansa…", "a": ["avoimessa toimintaympäristössä", "rajoitetussa toimintaympäristössä", "minimaalisessa toimintaympäristössä", "kriisinhallinnan toimintaympäristössä"], "r": "#osio1", "p": "s. 21"}, {"q": "Varusmiespalveluksen aloittaminen on kirjan esimerkki siirtymisestä…", "a": ["avoimesta rajoitettuun toimintaympäristöön", "rajoitetusta avoimeen toimintaympäristöön", "minimaalisesta avoimeen toimintaympäristöön", "avoimesta minimaaliseen toimintaympäristöön"], "r": "#osio1", "p": "s. 23"}, {"q": "Mikä on tavoitteellisen vuorovaikutuksen pelikentän ihannetila?", "a": ["Syväjohtamisen kulttuuri", "Kontrolloiva vuorovaikutuskulttuuri", "Epävirallinen keskustelukulttuuri", "Passiivinen vuorovaikutuskulttuuri"], "r": "#osio1", "p": "s. 27"}, {"q": "Missä kulttuurissa viihdytään hyvin yhdessä, mutta tavoitteet saavutetaan huonosti?", "a": ["Epävirallinen keskustelukulttuuri", "Kontrolloiva vuorovaikutuskulttuuri", "Syväjohtamisen kulttuuri", "Passiivinen vuorovaikutuskulttuuri"], "r": "#osio1", "p": "s. 27"}, {"q": "Mikä seuraavista EI ole yksi Puolustusvoimien kuudesta yhteisestä arvosta?", "a": ["Rohkeus", "Isänmaallisuus", "Luotettavuus", "Yhteistyö"], "r": "#osio1", "p": "s. 35–36"}, {"q": "Mikä käsite on kirjan mukaan ”moraalin mukaista toimintaa”?", "a": ["Eettisyys", "Etiikka", "Moraali", "Arvot"], "r": "#osio1", "p": "s. 39"}, {"q": "Mikä käsite ”tutkii moraalia ja niitä käsitteitä, joita moraalisessa keskustelussa käytetään”?", "a": ["Etiikka", "Eettisyys", "Moraali", "Arvot"], "r": "#osio1", "p": "s. 39"}, {"q": "Mikä on viestintäprosessin oikea järjestys lähettäjältä vastaanottajalle?", "a": ["Tavoite → sanoma → muotoilu → viestintäkanava → tulkinta", "Sanoma → tavoite → muotoilu → tulkinta → viestintäkanava", "Tavoite → muotoilu → sanoma → tulkinta → viestintäkanava", "Muotoilu → tavoite → sanoma → viestintäkanava → tulkinta"], "r": "#osio1", "p": "s. 41"}, {"q": "Vastaanottaja ei ymmärrä käskyä, koska käsitteet ovat vieraita. Mikä este on kyseessä?", "a": ["Tulkintaan liittyvä este", "Muotoiluun liittyvä este", "Viestintäkanavaan liittyvä este", "Palautteeseen liittyvä este"], "r": "#osio1", "p": "s. 41"}, {"q": "Mikä vuorovaikutustyyli on kirjan mukaan jämäkkä?", "a": ["Assertiivinen", "Aggressiivinen", "Epäassertiivinen", "Alistuva"], "r": "#osio1", "p": "s. 44"}, {"q": "Mitä vuorovaikutustapaa ”ei kannata koskaan tietoisesti valita käytettäväksi”?", "a": ["Aggressiivinen", "Assertiivinen", "Epäassertiivinen", "Alistuva"], "r": "#osio1", "p": "s. 45"}, {"q": "Mikä on johtajuusteorioiden kehityksen oikea järjestys?", "a": ["Ominaisuuskeskeiset → käyttäytymiskeskeiset → tilannekeskeiset → uusi johtamisen paradigma", "Käyttäytymiskeskeiset → ominaisuuskeskeiset → tilannekeskeiset → uusi johtamisen paradigma", "Tilannekeskeiset → ominaisuuskeskeiset → käyttäytymiskeskeiset → uusi johtamisen paradigma", "Ominaisuuskeskeiset → tilannekeskeiset → käyttäytymiskeskeiset → uusi johtamisen paradigma"], "r": "#osio1", "p": "s. 15"}, {"q": "Minkä paradigman periaatteisiin syväjohtamisen malli perustuu?", "a": ["Transformationaalisen johtamisen", "Tieteellisen liikkeenjohdon", "Rakenneteorioiden", "Ominaisuuskeskeisten teorioiden"], "r": "#osio2", "p": "s. 15, 46"}, {"q": "Mitkä ovat syväjohtamisen neljä kulmakiveä?", "a": ["Innostus, luottamus, oppiminen, arvostus", "Innostus, luottamus, osaaminen, ammattitaito", "Tehokkuus, tyytyväisyys, yrittämisen halu, ammattitaito", "Luottamus, arvostus, kontrolli, palaute"], "r": "#osio2", "p": "s. 48"}, {"q": "Mikä on kirjan mukaan syväjohtamisen kulmakivistä tärkein?", "a": ["Luottamus", "Innostus", "Oppiminen", "Arvostus"], "r": "#osio2", "p": "s. 54"}, {"q": "Mitkä ovat syväjohtamisen mallin kolme kokonaisuutta järjestyksessä?", "a": ["Valmius → käyttäytyminen → vaikutus", "Käyttäytyminen → valmius → vaikutus", "Vaikutus → käyttäytyminen → valmius", "Valmius → vaikutus → käyttäytyminen"], "r": "#osio2", "p": "s. 52"}, {"q": "Mikä ulottuvuus kuuluu syväjohtamisen mallissa valmiuteen?", "a": ["Ammattitaito", "Luottamus", "Tehokkuus", "Kontrolloivuus"], "r": "#osio2", "p": "s. 52"}, {"q": "Mitkä ulottuvuudet kuuluvat johtamisen vaikutuksiin?", "a": ["Tehokkuus, tyytyväisyys ja yrittämisen halu", "Kontrolloivuus, passiivisuus ja ammattitaito", "Luottamus, arvostus ja oppiminen", "Innostus, tehokkuus ja ammattitaito"], "r": "#osio2", "p": "s. 52"}, {"q": "Mikä selittää eniten tehokkuutta?", "a": ["Innostus", "Arvostus", "Luottamus", "Kontrolloiva johtaminen"], "r": "#osio2", "p": "s. 67"}, {"q": "Mikä selittää eniten tyytyväisyyttä?", "a": ["Arvostus", "Innostus", "Oppiminen", "Passiivinen johtaminen"], "r": "#osio2", "p": "s. 67"}, {"q": "Mikä käyttäytyminen selittää yrittämisen halua käänteisesti?", "a": ["Kontrolloiva käyttäytyminen", "Innostus", "Oppiminen", "Arvostus"], "r": "#osio2", "p": "s. 67"}, {"q": "Täydennä: ”Liiallinen kontrolli on ___ puutetta!”", "a": ["luottamuksen", "arvostuksen", "osaamisen", "innostuksen"], "r": "#osio2", "p": "s. 56"}, {"q": "Täydennä: ”Me teemme sen – luo ___!”", "a": ["innostusta", "luottamusta", "arvostusta", "oppimista"], "r": "#osio2", "p": "s. 56"}, {"q": "Mitä passiivinen johtaminen edustaa syväjohtamisen mallissa?", "a": ["Niin sanottua ”ei-johtajuutta”", "Hyvää kontrollia", "Delegoivaa johtamista", "Tehtäväjohtamista"], "r": "#osio2", "p": "s. 56"}, {"q": "Mihin palaute kohdistetaan kirjan mukaan aina?", "a": ["Toimintaan", "Henkilökohtaisiin ominaisuuksiin", "Persoonaan", "Koko ryhmään"], "r": "#osio2", "p": "s. 59"}, {"q": "Itseluottamus korkea ja suhtautuminen palautteeseen myönteinen. Kuka hän on kuvassa 10?", "a": ["Vastuunottaja", "Taistelija", "Tuenpyytäjä", "Luovuttaja"], "r": "#osio2", "p": "s. 63"}, {"q": "Mikä Joharin ikkunan ruutu on se, jonka muut näkevät mutta jota henkilö ei itse tiedosta?", "a": ["Sokea minä", "Avoin minä", "Salattu minä", "Tuntematon minä"], "r": "#osio2", "p": "s. 70"}, {"q": "Mitä summamuuttujataulukon yli 0.7:n hajonta kertoo?", "a": ["Vastaajien palaute on ristiriitaista", "Palaute on erityisen luotettavaa", "Kontrolloivuus on liian korkea", "Profiili on valmis"], "r": "#osio2", "p": "s. 66"}, {"q": "Montako kehittymistarvetta kirjan mukaan kannattaa määritellä?", "a": ["Yksi tai kaksi", "Kolme tai neljä", "Kaikki kymmenen ulottuvuutta", "Ei yhtään, vain vahvuudet"], "r": "#osio2", "p": "s. 72"}, {"q": "Kuinka laaja on johtaja- ja kouluttajakoulutusohjelma?", "a": ["20 opintopistettä (560 tuntia)", "8 opintopistettä", "5 opintopistettä", "60 opintopistettä"], "r": "#osio2", "p": "s. 74"}, {"q": "Kuinka monta kertaa kausipalautekeskustelu toteutetaan vähintään johtajakauden aikana?", "a": ["Kaksi kertaa", "Kerran", "Viikoittain", "Ei lainkaan, se on vapaaehtoinen"], "r": "#osio2", "p": "s. 71"}], N=15, app=document.getElementById('koeApp');
+  app.hidden=false;
+  function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+  function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML;}
+  var qs,i,misses;
+  function start(){qs=shuffle(BANK).slice(0,Math.min(N,BANK.length));i=0;misses=[];show();}
+  function intro(){
+    app.innerHTML='<p>'+Math.min(N,BANK.length)+' satunnaista monivalintakysymystä '+BANK.length+' kysymyksen pankista. Jokaisen vastauksen jälkeen näet heti, menikö oikein, ja lopussa linkit kohtiin, jotka kannattaa kerrata. Väärät vaihtoehdot ovat kirjan omia termejä tai selvästi kirjan vastaisia väitteitä.</p><button class="btn" id="koeStart">Aloita koe</button>';
+    document.getElementById('koeStart').onclick=start;
+  }
+  function show(){
+    var q=qs[i], opts=shuffle(q.a.map(function(t,k){return {t:t,ok:k===0};}));
+    app.innerHTML='<div class="meta"><span>Kysymys '+(i+1)+' / '+qs.length+'</span><span>Oikein '+(i-misses.length)+'</span></div><div class="prog"><div style="width:'+(i/qs.length*100)+'%"></div></div><div class="qtext">'+esc(q.q)+'</div><div class="opts"></div><div class="fb"></div>';
+    var box=app.querySelector('.opts');
+    opts.forEach(function(o){
+      var b=document.createElement('button'); b.className='opt'; b.textContent=o.t;
+      b.onclick=function(){
+        box.querySelectorAll('.opt').forEach(function(x,k){x.disabled=true; if(opts[k].ok)x.classList.add('ok');});
+        if(!o.ok){b.classList.add('bad'); misses.push({q:q,y:o.t});}
+        var fb=app.querySelector('.fb');
+        fb.innerHTML=(o.ok?'<span style="color:var(--c1)">✓ Oikein</span>':'<span style="color:var(--c3)">✗ Väärin</span> · <a href="'+q.r+'">kertaa kohta</a> (kirjan '+esc(q.p)+')')+'<br><br>';
+        var n=document.createElement('button'); n.className='btn'; n.textContent=(i+1<qs.length)?'Seuraava →':'Näytä tulos';
+        n.onclick=function(){i++; if(i<qs.length)show(); else result();};
+        fb.appendChild(n); n.focus();
+      };
+      box.appendChild(b);
+    });
+  }
+  function result(){
+    var ok=qs.length-misses.length, h='<div class="score">'+ok+' / '+qs.length+'</div><p>'+(misses.length?'Kertaa nämä:':'Kaikki oikein!')+'</p>';
+    misses.forEach(function(m){h+='<div class="miss"><b>'+esc(m.q.q)+'</b><br><span class="y">Vastasit: '+esc(m.y)+'</span><br><span class="c">Oikein: '+esc(m.q.a[0])+'</span><br><a href="'+m.q.r+'">Kertaa kohta</a> · kirjan '+esc(m.q.p)+'</div>';});
+    h+='<p><button class="btn" id="koeAgain">Uusi koe</button></p>';
+    app.innerHTML=h; document.getElementById('koeAgain').onclick=start;
+  }
+  intro();
 })();
 </script>
 </body>
